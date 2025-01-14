@@ -50,9 +50,7 @@ def install_packages(packages):
     Install debian packages
     """
     # Check if an apt-get update is required
-    if len(os.listdir("/var/lib/apt/lists")) == 0:
-        utils.run_subprocess(["apt-get", "update", "--yes"])
     env = os.environ.copy()
     # Stop apt from asking questions!
     env["DEBIAN_FRONTEND"] = "noninteractive"
-    utils.run_subprocess(["apt-get", "install", "--yes"] + packages, env=env)
+    utils.run_subprocess(["yum", "install", "-y"] + packages, env=env)
